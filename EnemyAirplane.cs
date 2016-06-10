@@ -49,6 +49,9 @@ namespace AirWar
            } 
          
        speed1 =  2*(10 / this.speed);
+       if (speed1 > 50) {
+           speed1 = 50;
+       }
       if ((added == true)) {
           if ((this.y > 35) && (this.y < 250 - a * speed1)) { this.y += a*k * speed1; }
               if ((this.y >= 250))
