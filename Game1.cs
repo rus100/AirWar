@@ -198,7 +198,7 @@ namespace AirWar
                         {
                             float x0 = vectorgun[i].X;
                             float y0 = vectorgun[i].Y;
-                            //vectorgun.RemoveAt(i);
+                            
                             x0 += shoots[i].speed;
                             Vector2 v = new Vector2(x0, y0);
                             vectorgun[i] = v;
@@ -354,7 +354,7 @@ namespace AirWar
                             explose.Y = vectorplane[i].Y;
                                 bum.Play();
                                 
-                                vzriv = true;
+                                //vzriv = true;
                                 
                                 if (nomers[i] == 0)
                                 {
@@ -404,32 +404,33 @@ namespace AirWar
                             }
                         }
                         for (int j = 0; j < enemys.Count; j++)
+                        {   
+                        if (enemys[j].shoot == true)
                         {
-                            if (enemys[j].shoot == true)
+                            if (gameTime.TotalGameTime.Ticks % 50 == 0)
                             {
-                                if (gameTime.TotalGameTime.Ticks % 50 == 0)
-                                {
-                                    sh = new Shoot();
-                                    tratata.Play();
-                                    if (vzriv == false) { sh.speed = enemys[j].speed + 1f + dx; }
-                                    else {
-                                         
-                                        sh.speed = last_speed_gun_enemy + 1f + dx; }
-                                    if (nomers[j] == 0)
-                                    {
-                                        sh.y = vectorplane[j].Y + (messer.Height / 2);
-                                        sh.x = vectorplane[j].X;
-                                    }
-                                    else
-                                    {
-                                        sh.y = vectorplane[j].Y + (foker.Height / 2);
-                                        sh.x = vectorplane[j].X;
-                                    }
-                                    shootsenemy.Add(sh);
-                                    Vector2 v = new Vector2(sh.x, sh.y);
-                                    vectorgunenemy.Add(v);
-                                }
+                                sh = new Shoot();
+                                tratata.Play();
+                                 sh.speed = enemys[j].speed + 1f + dx; 
+                                //else {
 
+                                //    sh.speed = last_speed_gun_enemy + 1f + dx; }
+                                if (nomers[j] == 0)
+                                {
+                                    sh.y = vectorplane[j].Y + (messer.Height / 2);
+                                    sh.x = vectorplane[j].X;
+                                }
+                                else
+                                {
+                                    sh.y = vectorplane[j].Y + (foker.Height / 2);
+                                    sh.x = vectorplane[j].X;
+                                }
+                                shootsenemy.Add(sh);
+                                Vector2 v = new Vector2(sh.x, sh.y);
+                                vectorgunenemy.Add(v);
+                            }
+                        }     
+                        }
                                 for (int i = 0; i < shootsenemy.Count; i++)
                                 {
                                     float x0 = vectorgunenemy[i].X;
@@ -451,8 +452,8 @@ namespace AirWar
                                         vectorgunenemy.RemoveAt(i);
                                     }
                                 }
-                            }
-                        }
+                            
+                        
                         if ((vector3.X == 0) || (vector3.X < -40))
                         {
                             tool.Add();
@@ -827,4 +828,5 @@ namespace AirWar
         }
     }
 }
+
 
